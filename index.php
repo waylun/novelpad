@@ -92,7 +92,7 @@ input[type=number]::-webkit-outer-spin-button {
     <div id="lineslider" style="margin-top:.5em;width:50%"></div>
   <hr style="margin-top:1em"> 
   <label for="chapter">Chapter: </label><br>
-  <select id="chapter" style='margin:.5em 0;width:50%;height:20px;' onChange='window.location.href=this.value'>
+  <select id="chapter" style='margin:.5em 0;width:50%;height:20px;' onChange='optionChanged(this.value)'>
   <?php
       $fixtxt  = glob('*.txt', GLOB_BRACE);
       natcasesort($fixtxt);
@@ -102,7 +102,7 @@ input[type=number]::-webkit-outer-spin-button {
       //remove the first number
       $title = preg_replace('/^[0-9]+/', '', $fh);
       echo "
-        <option disabled selected style='display:none;''>Please Select...</option>
+        <option value='' disabled selected style='display:none;''>Please Select...</option>
         <option value='#".$title."'>".$title."</option>";
         }
   ?>
@@ -168,6 +168,11 @@ input[type=number]::-webkit-outer-spin-button {
 <script type="text/javascript" src="js/bookmark.js"></script>
 <!-- go to top js -->
 <script type="text/javascript" src="js/gototop.js"></script>
-
+<script>
+function optionChanged(value) {
+  window.location.href= value;
+  document.getElementById("chapter").value = ''
+}
+</script>
 </body>
 </html>
